@@ -57,12 +57,7 @@
 }
 
 .modify_bx {
-	display: none;
 	margin-top: 20px;
-}
-
-li.active .modify_bx {
-	display: block;
 }
 
 .result_list {

@@ -9,7 +9,6 @@ class App extends Component {
 		password: "",
 		list: [],
 		temp: {}, // 값을 임시 저장할 공간 생성
-		isActive: false,
 	};
 
 	usernameInput = createRef();
@@ -59,7 +58,10 @@ class App extends Component {
 						isActive: !user.isActive,
 					};
 				} else {
-					return user;
+					return {
+						...user,
+						isActive: false,
+					};
 				}
 			}),
 			temp: list.find((user) => user.id === id),
@@ -110,7 +112,7 @@ class App extends Component {
 				<ul className='result_list'>
 					{this.state.list.map((user, index) => {
 						return (
-							<li key={index} className={`${user.isActive && "active"}`}>
+							<li key={index}>
 								{user.username}의 비밀번호는 {user.password}입니다.
 								<br />
 								<button type='button' onClick={() => this.handleDelete(user.id)}>
@@ -119,13 +121,15 @@ class App extends Component {
 								<button type='button' onClick={() => this.handleModifyToggle(user.id)}>
 									수정하기
 								</button>
-								<form className='modify_bx'>
-									<input type='text' name='username' defaultValue={temp.username} onChange={this.handleModifyChange} />
-									<input type='text' name='password' defaultValue={temp.password} onChange={this.handleModifyChange} />
-									<button type='submnit' onClick={this.handleModifyConfirm}>
-										확인
-									</button>
-								</form>
+								{user.isActive && 
+									<form className='modify_bx'>
+										<input type='text' name='username' autoFocus defaultValue={temp.username} onChange={this.handleModifyChange} />
+										<input type='text' name='password' defaultValue={temp.password} onChange={this.handleModifyChange} />
+										<button type='submnit' onClick={this.handleModifyConfirm}>
+											확인
+										</button>
+									</form>
+								}
 							</li>
 						);
 					})}
