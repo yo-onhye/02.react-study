@@ -56,13 +56,8 @@
 }
 
 .react-form .valid_txt {
-	display: none;
 	margin-top: 5px;
 	color: #e65f54;
 	font-weight: bold;
 	font-size: 12px;
-}
-
-.react-form .valid_txt.active {
-	display: block;
 }
