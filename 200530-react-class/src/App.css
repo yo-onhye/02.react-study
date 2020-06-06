@@ -36,3 +36,57 @@
 		transform: rotate(360deg);
 	}
 }
+
+.input_row {
+	width: 500px;
+	margin: 20px auto 0;
+}
+
+.input_row input {
+	display: inline-block;
+	width: 100%;
+	margin-bottom: 10px;
+	line-height: 30px;
+	box-sizing: border-box;
+}
+
+.input_row button {
+	display: block;
+	width: 100%;
+	line-height: 30px;
+}
+
+.modify_bx {
+	display: none;
+	margin-top: 20px;
+}
+
+li.active .modify_bx {
+	display: block;
+}
+
+.result_list {
+	width: 500px;
+	margin: 20px auto 0;
+}
+
+.result_list li {
+	margin-top: 10px;
+}
+
+.result_list li button{
+	width: 200px;
+	margin: 10px 50px 0 0;
+}
+
+.result_list .modify_bx {
+	width: 430px;
+	padding: 20px 10px;
+	border: 1px solid #eee;
+	box-sizing: border-box;
+}
+
+.result_list .modify_bx input {
+	width: 100%;
+	box-sizing: border-box;
+}

@@ -8,13 +8,14 @@ class App extends Component {
 		username: "",
 		password: "",
 		list: [],
+		temp: {}, // 값을 임시 저장할 공간 생성
+		isActive: false,
 	};
 
 	usernameInput = createRef();
 
 	handleChange = (e) => {
 		const { value, name } = e.target;
-
 		this.setState({
 			[name]: value,
 		});
@@ -29,10 +30,12 @@ class App extends Component {
 			username: "",
 			password: "",
 			list: list.concat({
+				id: this.id,
 				username,
 				password,
-				id: this.id,
+				isActive: false,
 			}),
+			temp: {},
 		});
 
 		this.id++;
@@ -40,33 +43,60 @@ class App extends Component {
 	};
 
 	handleDelete = (id) => {
-
 		this.setState({
 			list: this.state.list.filter((user) => user.id !== id),
 		});
 	};
 
-	handleChange2 = (e, id) => {
-		const { value, name } = e.target;
+	handleModifyToggle = (id) => {
+		const { list } = this.state;
 
 		this.setState({
-			[name]: value,
-			list: this.state.list.map((user) => (id === user.id ? { ...user, ...value } : user)),
+			list: list.map((user) => {
+				if (user.id === id) {
+					return {
+						...user,
+						isActive: !user.isActive,
+					};
+				} else {
+					return user;
+				}
+			}),
+			temp: list.find((user) => user.id === id),
 		});
-
-		console.log(value);
-		console.log(id);
 	};
 
-	handleModify = (id, data) => {
+	handleModifyChange = (e) => {
+		const { name, value } = e.target;
+		const { temp } = this.state;
+
 		this.setState({
-			list: this.state.list.map((user) => (id === user.id ? { ...user, ...data } : user)),
+			temp: {
+				...temp,
+				[name]: value,
+			},
 		});
-		console.log(data);
+	};
+
+	handleModifyConfirm = (e) => {
+		e.preventDefault();
+
+		const { list, temp } = this.state;
+
+		this.setState({
+			list: list.map((user) => {
+				if (user.id === temp.id) {
+					return temp;
+				} else {
+					return user;
+				}
+			}),
+			temp: {},
+		});
 	};
 
 	render() {
-		const { list, username, password } = this.state;
+		const { temp } = this.state;
 
 		return (
 			<div>
@@ -77,15 +107,25 @@ class App extends Component {
 						<button type='submit'>추가하기</button>
 					</div>
 				</form>
-				<ul className="result_list">
+				<ul className='result_list'>
 					{this.state.list.map((user, index) => {
 						return (
-							<li key={index}>
+							<li key={index} className={`${user.isActive && "active"}`}>
 								{user.username}의 비밀번호는 {user.password}입니다.
 								<br />
 								<button type='button' onClick={() => this.handleDelete(user.id)}>
 									삭제하기
 								</button>
+								<button type='button' onClick={() => this.handleModifyToggle(user.id)}>
+									수정하기
+								</button>
+								<form className='modify_bx'>
+									<input type='text' name='username' defaultValue={temp.username} onChange={this.handleModifyChange} />
+									<input type='text' name='password' defaultValue={temp.password} onChange={this.handleModifyChange} />
+									<button type='submnit' onClick={this.handleModifyConfirm}>
+										확인
+									</button>
+								</form>
 							</li>
 						);
 					})}
