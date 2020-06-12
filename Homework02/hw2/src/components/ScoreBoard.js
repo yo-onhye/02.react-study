@@ -2,9 +2,10 @@ import React, { Component } from "react";
 
 class ScoreBoard extends Component {
 	render() {
+		const { score, total } = this.props;
 		return (
 			//TODO
-			<div></div>
+			<div>{`${score} / ${total}`}</div>
 		);
 	}
 }

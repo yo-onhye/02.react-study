@@ -1,12 +1,19 @@
-import React, { Component } from 'react';
-import './Card.css';
-
+import React, { Component } from "react";
+import "./Card.css";
 
 class Card extends Component {
-    render() {//TODO: implement me
-        return (
-            <div></div>
-        );
-    }
+	shouldComponentUpdate(nextProps, nextState) {
+		if (this.props.card !== nextProps.card) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	render() {
+		//TODO: implement me
+		const { card } = this.props;
+
+		return <div>{card.isShow ? card.value : "?"}</div>;
+	}
 }
 export default Card;
