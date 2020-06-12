@@ -3,6 +3,8 @@ import Card from "./Card";
 import { chunk } from "../utils";
 
 class Grid extends Component {
+	id = 1;
+
 	render() {
 		const { list, onToggle, tempOpen } = this.props;
 
