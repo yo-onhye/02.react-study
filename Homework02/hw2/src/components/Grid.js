@@ -16,7 +16,7 @@ class Grid extends Component {
 								return (
 									// TODO
 									<button
-										kye={card.id}
+										key={card.id}
 										className='Card'
 										onClick={(e) => {
 											e.stopPropagation();

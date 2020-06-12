@@ -94,7 +94,7 @@ class App extends Component {
 				{/* <Grid /> TODO: look at Grid.js to see which props to pass */}
 				<Grid list={cards} onToggle={this.handleToggle} tempOpen={this.tempOpen} />
 				{/* <ScoreBoard /> TODO: what should be passed to scoreBoard? */}
-				<ScoreBoard score={this.state.score} total={cards.length} />
+				<ScoreBoard score={score} total={cards.length} />
 				<Timer running={!done} />
 				{done && <button onClick={this.initGame}> Start </button>}
 			</div>
