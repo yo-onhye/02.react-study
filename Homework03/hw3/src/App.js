@@ -28,9 +28,21 @@ class App extends Component {
 	// 로또 번호 호출 (멀티 리퀘스트 호출)
 	handleClickLotto = async () => {
 		try {
-			const response = await axios.all([axios.get("http://askat.me:8000/api/lotto1"), axios.get("http://askat.me:8000/api/lotto2")]).then((response) => {
+			const lottoArr = await axios.all([axios.get("http://askat.me:8000/api/lotto1"), axios.get("http://askat.me:8000/api/lotto2")]).then((lottoArr) => {
+				const flatMapReducer = (accumulator, value) => {
+					const key = "data";
+					if (value.hasOwnProperty(key) && Array.isArray(value[key])) {
+						value[key].forEach(val => {
+							if (accumulator.indexOf(val) === -1) {
+								accumulator.push(val);
+							}
+						});
+					}
+					return accumulator;
+				};
+				const lottoData = lottoArr.reduce(flatMapReducer, []); 
 				this.setState({
-					data: response[0].data.concat(response[1].data).join(' '),
+					data: lottoData.join(' '),
 				});
 			});
 		} catch (e) {
