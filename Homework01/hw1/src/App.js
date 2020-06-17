@@ -10,7 +10,11 @@ class App extends Component {
 	};
 
 	handleUsername = (e) => {
-		if (e.target.value.indexOf("@") === -1) {
+		if (!e.target.value.includes("@")) {
+			// 문자열 체크 search(), indexOf(), includes() 사용 가능
+			// search(), indexOf()는 -1, 0으로 결과 반환
+			// includes()는 boolean값으로 결과 반환
+			// constains() 사용 시 TypeError 발생. 원인 확인 예정
 			this.setState({
 				email: e.target.value,
 				isEmailVaild: false,
@@ -42,11 +46,11 @@ class App extends Component {
 
 		return (
 			<form className='react-form'>
-				<input name='email' value={this.state.email} onChange={this.handleUsername} />
+				<input type='text' name='email' value={this.state.email} onChange={this.handleUsername} />
 				{!isEmailVaild && this.state.email !== "" ? <p className='valid_txt'>@가 없음</p> : null}
-				<input name='password' value={this.state.password} onChange={this.handlePassword} />
+				<input type='text' name='password' value={this.state.password} onChange={this.handlePassword} />
 				{!isPasswordVaild && this.state.password !== "" ? <p className='valid_txt'>길이가 6 이상이 아님</p> : null}
-				<button type='submit' disabled={isEmailVaild && isPasswordVaild ? null : "disabled"} onClick={() => alert("success!")}>
+				<button type='submit' disabled={!isEmailVaild && isPasswordVaild} onClick={() => alert("success!")}>
 					submit
 				</button>
 			</form>
