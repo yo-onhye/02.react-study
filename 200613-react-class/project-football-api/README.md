@@ -3,6 +3,7 @@
 ## Football Api를 이용하여 날짜에 맞는 데이터 가져오기
 
 **axios 활용**
+
 axios는 node.js와 브라우저를 위한 http통신 javascript 라이브러리
 
 ## Homework
