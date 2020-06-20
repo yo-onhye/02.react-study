@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Route } from "react-router-dom";
 import MatchTemplate from './MatchTemplate/MatchTemplate';
 import MatchFinder from './MatchFinder';
 import Match from './Match';
@@ -47,6 +48,7 @@ class App extends Component {
 				>
 					<Match range={range} leagueId={leagueId} />
 				</MatchTemplate>
+				<Route exact path='/:leagueId' component={Match} />
 			</div>
 		);
 	}

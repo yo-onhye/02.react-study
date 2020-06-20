@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import { NavLink } from 'react-router-dom';
 import './LeagueItem.scss';
 
 class LeagueItem extends Component {
@@ -9,14 +10,13 @@ class LeagueItem extends Component {
 	}
 	
 	render() {
-		console.log('leagueItem re-render!');
-
 		const { league_name, league_id, selected, setLeagueId } = this.props;
+
 		return (
 			<Fragment>
-				<span className={`league ${selected && 'selected'}`} onClick={() => setLeagueId(league_id)}>
+				<NavLink className={`league ${selected && 'selected'}`} to={`/${league_id}`} onClick={() => setLeagueId(league_id)}>
 					{league_name}
-				</span>
+				</NavLink>
 			</Fragment>
 		);
 	}

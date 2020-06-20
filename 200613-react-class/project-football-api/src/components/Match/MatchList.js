@@ -46,16 +46,15 @@ class MatchList extends Component {
 	}
 
 	render() {
-		console.log('matchList re-render');
-
 		const { data, loading } = this.state;
+
 		return (
 			<div>
 				{loading && <h3 style={{ textAlign: 'center' }}>데이터 로딩 중 입니다....</h3>}
 				{!loading &&
 				data &&
 				!data.error && /* 결과 값이 없을 경우 방어 */
-					data.map(d => <Match key={d.match_id} data={d} />)}
+				data.map(d => <Match key={d.match_id} data={d} />)}
 			</div>
 		);
 	}
