@@ -3,8 +3,8 @@ import {Link} from 'react-router-dom';
 
 class Profile extends Component {
   state = {
-    username: "",
-    birthday: "",
+    username: "ta",
+    birthday: "1993-10-10",
   };
 
   handleChange = e => {
