@@ -1,14 +1,17 @@
+//presentational component (dumb component)
 import React, { Component } from 'react';
 import './Counter.css';
 
 class Counter extends Component {
 	render() {
+	const { color, number, increment, decrement } = this.props;
+
 		return (
 			<div className="Counter">
-				<h1>0</h1>
+				<h1 style={{ color: color }}>{number}</h1>
 				<div className="btn-wrapper">
-					<button>+</button>
-					<button>-</button>
+					<button onClick={increment}>+</button>
+					<button onClick={decrement}>-</button>
 				</div>
 			</div>
 		);
