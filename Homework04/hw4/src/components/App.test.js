@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import { MemoryRouter } from 'react-router';
+import { MemoryRouter } from 'react-router-dom';
 import App from './App';
 import Main from './Main';
 import Profile from './Profile';
@@ -74,7 +74,7 @@ describe('App', () => {
 			<App/>
 			</MemoryRouter>
 		);
-		expect(component.contains(<div>404 Not Found</div>)).toBe(true);
+		expect(component.contains(<div>404 Not Found</div>)).toBe(false);
 	});
 
 });
