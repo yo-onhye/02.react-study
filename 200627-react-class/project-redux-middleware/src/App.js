@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { changeInput, insertzz } from './store/modules/form';
+import { changeInput, insert, insertThunk } from './store/modules/form';
 
 class App extends Component {
 	handleChange = e => {
@@ -11,9 +11,9 @@ class App extends Component {
 	handleSubmit = e => {
 		e.preventDefault();
 
-		const { changeInput, insert, input } = this.props;
+		const { changeInput, insert, input, insertThunk } = this.props;
 
-		insert(input);
+		insertThunk(input);
 		changeInput('');
 	};
 
@@ -41,6 +41,7 @@ export default connect(
 	}),
 	{
 		changeInput,
-		insert
+		insert,
+		insertThunk,
 	}
 )(App);
