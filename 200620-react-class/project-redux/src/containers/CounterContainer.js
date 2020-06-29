@@ -1,10 +1,10 @@
 // container component (smart component)
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { bindActionCreators }from "redux";
 // import { increment, decrement } from "../store/modules/counter";
 import * as CounterActions from '../store/modules/counter';
 import Counter from "../components/Counter";
-import { bindActionCreators }from "redux";
 
 class CounterContainer extends Component {
 	render() {

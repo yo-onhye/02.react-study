@@ -21,6 +21,7 @@ const initialState = {
 	list: [],
 }
 
+// counter reducer
 export default handleActions(
 	{
 		[CHANGE_INPUT]: (state, action) => ({
